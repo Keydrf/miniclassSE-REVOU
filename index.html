@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#profile">Our Profile</a></li>
+      <li><a href="#portofolio">Portofolio</a></li>
+      <li><a href="#message">Message Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1>Hi Keysha, Welcome To Website</h1>
+    <p>Ini adalah website sederhana perusahaan</p>
+  </section>
+
+  <section id="profile">
+    <h2>Our Headquarter</h2>
+    <div class="city-list">
+      <div>Jakarta</div>
+      <div>Bandung</div>
+      <div>Surabaya</div>
+    </div>
+  </section>
+
+  <section id="message">
+    <h2>Message Us</h2>
+    <form id="contactForm" onsubmit="return validateForm()">
+      <label>Nama:<input type="text" id="name"></label>
+      <label>Tanggal:<input type="date" id="date"></label>
+      <label>Jenis Kelamin:<br>
+        <input type="radio" name="gender" value="Laki-laki">Laki-laki
+        <input type="radio" name="gender" value="Perempuan">Perempuan
+      </label>
+      <label>Nomor HP:<input type="text" id="phone"></label>
+      <label>Pesan:<textarea id="messageText"></textarea></label>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="infoBox"></div>
+
+    <footer>
+      <p>Created by: Keysha Arindra Fabian <br>Email: arindrakeysha@gmail.com</p>
+    </footer>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
