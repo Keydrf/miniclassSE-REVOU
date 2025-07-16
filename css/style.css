@@ -117,6 +117,14 @@ button:hover {
   font-family: monospace;
 }
 
+#resultBox {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #e6f7ff;
+  border-left: 5px solid #007acc;
+  border-radius: 5px;
+}
+
 footer {
   text-align: center;
   margin-top: 3rem;
