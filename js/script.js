@@ -1,47 +1,38 @@
 function validateForm() {
   const name = document.getElementById("name").value.trim();
+  const date = document.getElementById("date").value;
   const phone = document.getElementById("phone").value.trim();
   const message = document.getElementById("messageText").value.trim();
-  const gender = document.querySelector('input[name="gender"]:checked');
-  const date = document.getElementById("date").value;
+  const genderInput = document.querySelector('input[name="gender"]:checked');
 
-  if (!name || !phone || !message || !gender || !date) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Oops...',
-      text: 'Semua field harus diisi!',
-    });
+  // Validasi wajib isi
+  if (!name || !date || !phone || !message || !genderInput) {
+    alert("Semua field harus diisi!");
     return false;
   }
 
+  // Validasi nomor HP harus angka
   if (!/^\d+$/.test(phone)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Nomor HP tidak valid',
-      text: 'Gunakan hanya angka tanpa spasi atau simbol lain.',
-    });
+    alert("Nomor HP hanya boleh berisi angka!");
     return false;
   }
 
-  const now = new Date();
-  const infoBox = document.getElementById("infoBox");
-  infoBox.innerHTML = `
-    <strong>Data Terkirim:</strong><br>
-    <ul>
-      <li>Waktu: ${now.toLocaleString()}</li>
-      <li>Nama: ${name}</li>
-      <li>Tanggal: ${date}</li>
-      <li>Jenis Kelamin: ${gender.value}</li>
-      <li>Nomor HP: ${phone}</li>
-      <li>Pesan: ${message}</li>
-    </ul>
+  // Jika valid, ambil data
+  const gender = genderInput.value;
+
+  const resultBox = document.getElementById("resultBox");
+  const resultContent = document.getElementById("resultContent");
+
+  resultContent.innerHTML = `
+    <table>
+      <tr><td><strong>Nama</strong></td><td>:</td><td>${name}</td></tr>
+      <tr><td><strong>Tanggal</strong></td><td>:</td><td>${date}</td></tr>
+      <tr><td><strong>Jenis Kelamin</strong></td><td>:</td><td>${gender}</td></tr>
+      <tr><td><strong>Nomor HP</strong></td><td>:</td><td>${phone}</td></tr>
+      <tr><td><strong>Pesan</strong></td><td>:</td><td>${message}</td></tr>
+    </table>
   `;
 
-  Swal.fire({
-    icon: 'success',
-    title: 'Berhasil!',
-    text: 'Pesanmu telah terkirim!',
-  });
-
-  return false; // Mencegah reload halaman
+  resultBox.style.display = "block";
+  return false; // mencegah reload
 }
