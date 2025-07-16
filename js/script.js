@@ -3,26 +3,45 @@ function validateForm() {
   const phone = document.getElementById("phone").value.trim();
   const message = document.getElementById("messageText").value.trim();
   const gender = document.querySelector('input[name="gender"]:checked');
+  const date = document.getElementById("date").value;
 
-  if (!name || !phone || !message || !gender) {
-    alert("Semua field harus diisi!");
+  if (!name || !phone || !message || !gender || !date) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Oops...',
+      text: 'Semua field harus diisi!',
+    });
     return false;
   }
 
   if (!/^\d+$/.test(phone)) {
-    alert("Nomor HP harus berupa angka!");
+    Swal.fire({
+      icon: 'error',
+      title: 'Nomor HP tidak valid',
+      text: 'Gunakan hanya angka tanpa spasi atau simbol lain.',
+    });
     return false;
   }
 
   const now = new Date();
   const infoBox = document.getElementById("infoBox");
   infoBox.innerHTML = `
-    <p>Current time: ${now.toLocaleString()}</p>
-    <p>Nama: ${name}</p>
-    <p>Jenis Kelamin: ${gender.value}</p>
-    <p>Nomor HP: ${phone}</p>
-    <p>Pesan: ${message}</p>
+    <strong>Data Terkirim:</strong><br>
+    <ul>
+      <li>Waktu: ${now.toLocaleString()}</li>
+      <li>Nama: ${name}</li>
+      <li>Tanggal: ${date}</li>
+      <li>Jenis Kelamin: ${gender.value}</li>
+      <li>Nomor HP: ${phone}</li>
+      <li>Pesan: ${message}</li>
+    </ul>
   `;
 
-  return false; // Prevent form submission
+  Swal.fire({
+    icon: 'success',
+    title: 'Berhasil!',
+    text: 'Pesanmu telah terkirim!',
+  });
+
+  return false; // Mencegah reload halaman
 }
